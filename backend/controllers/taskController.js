@@ -42,9 +42,11 @@ exports.createTask = async (req, res) => {
     const { title, description, status, priority, due_date } = req.body;
     const userId = req.user.id;
 
+    const finalDueDate = due_date === '' ? null : due_date;
+
     const result = await pool.query(
       'INSERT INTO tasks (user_id, title, description, status, priority, due_date) VALUES ($1, $2, $3, $4, $5, $6) RETURNING *',
-      [userId, title, description, status || 'Pending', priority || 'Medium', due_date]
+      [userId, title, description, status || 'Pending', priority || 'Medium', finalDueDate]
     );
 
     res.status(201).json(result.rows[0]);
@@ -66,9 +68,11 @@ exports.updateTask = async (req, res) => {
       return res.status(404).json({ message: 'Task not found or unauthorized' });
     }
 
+    const finalDueDate = due_date === '' ? null : due_date;
+
     const result = await pool.query(
       'UPDATE tasks SET title = COALESCE($1, title), description = COALESCE($2, description), status = COALESCE($3, status), priority = COALESCE($4, priority), due_date = COALESCE($5, due_date) WHERE id = $6 AND user_id = $7 RETURNING *',
-      [title, description, status, priority, due_date, id, userId]
+      [title, description, status, priority, finalDueDate, id, userId]
     );
 
     res.json(result.rows[0]);
@@ -77,6 +81,7 @@ exports.updateTask = async (req, res) => {
     res.status(500).json({ message: 'Server error updating task' });
   }
 };
+
 
 exports.deleteTask = async (req, res) => {
   try {
