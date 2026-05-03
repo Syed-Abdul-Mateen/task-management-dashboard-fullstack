@@ -125,16 +125,16 @@ The frontend delivers a polished experience with glassmorphism effects, smooth m
 +------------------------------------------------------------------+
 |                     CLIENT  (React + Vite)                        |
 |                                                                   |
-|  +----------+  +----------+  +-----------+  +-----------------+  |
-|  |  Login   |  | Register |  | Dashboard |  |   Task Modal    |  |
-|  |  Page    |  |  Page    |  |   Page    |  |  (Create/Edit)  |  |
-|  +----+-----+  +----+-----+  +-----+-----+  +--------+--------+  |
-|       |              |              |                  |           |
-|       +--------------+--------------+------------------+           |
+|  +----------+  +----------+  +-----------+  +-----------------+   |
+|  |  Login   |  | Register |  | Dashboard |  |   Task Modal    |   |
+|  |  Page    |  |  Page    |  |   Page    |  |  (Create/Edit)  |   |
+|  +----+-----+  +----+-----+  +-----+-----+  +--------+--------+   |
+|       |              |              |                  |          |
+|       +--------------+--------------+------------------+          |
 |                              |                                    |
 |                   +----------+----------+                         |
 |                   |    AuthContext      |  (JWT Token Management) |
-|                   |    + API Service   |  (Axios Interceptors)   |
+|                   |    + API Service   |  (Axios Interceptors)    |
 |                   +----------+----------+                         |
 +---------------------|-----------|-----------------------------+   |
                       |  REST API |                                 |
@@ -143,25 +143,25 @@ The frontend delivers a polished experience with glassmorphism effects, smooth m
 |                              |                                    |
 |                   +----------+----------+                         |
 |                   |     Middleware      |                         |
-|                   |  (CORS, JSON,      |                         |
-|                   |   JWT Auth)        |                         |
+|                   |  (CORS, JSON,       |                         |
+|                   |   JWT Auth)         |                         |
 |                   +----------+----------+                         |
 |                              |                                    |
 |            +-----------------+-----------------+                  |
-|    +-------+--------+               +---------+--------+         |
-|    |  Auth Routes   |               |   Task Routes    |         |
-|    |  POST /login   |               |   GET    /tasks  |         |
-|    |  POST /register|               |   POST   /tasks  |         |
-|    +-------+--------+               |   PUT  /tasks/:id|         |
-|            |                        |   DELETE /tasks/:id        |
-|    +-------+--------+               +---------+--------+         |
-|    | Auth Controller|               | Task Controller  |         |
-|    +-------+--------+               +---------+--------+         |
+|    +-------+--------+               +---------+--------+          |
+|    |  Auth Routes   |               |   Task Routes    |          |
+|    |  POST /login   |               |   GET    /tasks  |          |
+|    |  POST /register|               |   POST   /tasks  |          |
+|    +-------+--------+               |   PUT  /tasks/:id|          |
+|            |                        |   DELETE /tasks/:id         |
+|    +-------+--------+               +---------+--------+          |
+|    | Auth Controller|               | Task Controller  |          |
+|    +-------+--------+               +---------+--------+          |
 |            +------------------+----------------+                  |
 |                               |                                   |
 |                    +----------+----------+                        |
 |                    |     PostgreSQL      |                        |
-|                    |     (pg Pool)      |                        |
+|                    |     (pg Pool)      |                         |
 |                    +---------------------+                        |
 +-------------------------------------------------------------------+
 ```
